@@ -15,6 +15,6 @@
 5. Install Cypress dependencies using command npm install --save-dev cypress
 6. Run command npx cypress open
 7. Remove examples from cypress/Integration/Examples folder
-8. Clode code from git
+8. Clone code from git
 9. Open Terminal
 10. Run command npm run test
