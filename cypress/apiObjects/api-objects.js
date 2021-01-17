@@ -7,6 +7,15 @@ const brightness = "brightness";
 const state = "state";
 const color = "color";
 const name = "name";
+const serverServiceName = "Smarthomeservice";
+
+/*
+ * Start and Stop Server
+ *  @param {string} To stop server service parameter should be "stop" and to start server service it should be "start"
+ */
+export function serverServiceStartStop(serviceParam) {
+  cy.exec(`sc ${serviceParam} ${serverServiceName}`);
+}
 
 export function listDevices(callback) {
   let devices1;
@@ -62,13 +71,17 @@ export function connectDevice(deviceIP, status) {
   });
 }
 
-export function deviceState(deviceip) {
+export function deviceState(deviceip, statetruefalse) {
   cy.request({
     method: "GET",
     url: `${baseURL}/${state}`,
   }).then(function (response) {
     expect(response.status).to.equal(200);
-    expect(response.body).to.have.string(deviceip);
+    if (statetruefalse) {
+      expect(response.body).to.have.string(deviceip);
+    } else {
+      expect(response.body).to.not.have.string(deviceip);
+    }
   });
 }
 

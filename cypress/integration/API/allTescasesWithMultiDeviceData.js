@@ -9,9 +9,13 @@ import {
   devices,
   updateDeviceColor,
   baseURL,
+  serverServiceStartStop,
 } from "../../apiObjects/api-objects";
 
 describe("Device test", function () {
+  before(() => {
+    serverServiceStartStop("start");
+  });
   let deviceData1;
   const newName = "newDevice";
   const newbrightness = 4;
@@ -43,7 +47,7 @@ describe("Device test", function () {
       const ip = data.ip;
       disconnectDevice();
       connectDevice(ip, true);
-      deviceState(ip);
+      deviceState(ip, true);
       disconnectDevice();
     });
   });
@@ -55,7 +59,7 @@ describe("Device test", function () {
       disconnectDevice();
       connectDevice(ip, true);
       updateDeviceName(newName, true);
-      deviceState(newName);
+      deviceState(newName, true);
       disconnectDevice();
     });
   });
@@ -67,10 +71,10 @@ describe("Device test", function () {
       disconnectDevice();
       connectDevice(ip, true);
       updateDeviceName(newName, true);
-      deviceState(newName);
+      deviceState(newName, true);
       disconnectDevice();
       connectDevice(ip, true);
-      deviceState(newName);
+      deviceState(newName, true);
       disconnectDevice();
     });
   });
@@ -82,7 +86,7 @@ describe("Device test", function () {
       disconnectDevice();
       connectDevice(ip, true);
       updateDeviceBrightness(newbrightness, true);
-      deviceState(newbrightness);
+      deviceState(newbrightness, true);
       disconnectDevice();
     });
   });
@@ -94,10 +98,10 @@ describe("Device test", function () {
       disconnectDevice();
       connectDevice(ip, true);
       updateDeviceBrightness(newbrightness, true);
-      deviceState(newbrightness);
+      deviceState(newbrightness, true);
       disconnectDevice();
       connectDevice(ip, true);
-      deviceState(newbrightness);
+      deviceState(newbrightness, true);
       disconnectDevice();
     });
   });
@@ -121,10 +125,10 @@ describe("Device test", function () {
       disconnectDevice();
       connectDevice(ip, true);
       updateDeviceColor(newColor, true);
-      deviceState(newColor);
+      deviceState(newColor, true);
       disconnectDevice();
       connectDevice(ip, true);
-      deviceState(newColor);
+      deviceState(newColor, true);
       disconnectDevice();
     });
   });
@@ -138,5 +142,8 @@ describe("Device test", function () {
       connectDevice(ip, false);
       disconnectDevice();
     });
+  });
+  after(() => {
+    serverServiceStartStop("stop");
   });
 });
