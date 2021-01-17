@@ -113,7 +113,7 @@ describe("Device test", function () {
       disconnectDevice();
       connectDevice(ip, true);
       updateDeviceColor(newColor, true);
-      deviceState(newColor);
+      deviceState(newColor, true);
       disconnectDevice();
     });
   });
