@@ -5,6 +5,7 @@
 2. Install Node JS
 3. Install Cypress
 4. Install Visual Studio Code( IDE)
+5. Configure Server service as "Smarthomeservice"
 
 # Steps for project set up-
 
